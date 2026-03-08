@@ -1,4 +1,4 @@
-[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/views.svg)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png)](https://github.com/Bobr2610/Beavers_counter)
 
 # Beavers Counter
 
@@ -9,7 +9,7 @@ View counter badge for GitHub. Use in any repo.
 In your README (replace `Bobr2610` and `Beavers_counter` with your counter repo):
 
 ```markdown
-[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/views.svg)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png)](https://github.com/Bobr2610/Beavers_counter)
 ```
 
 ## Increment from another repo

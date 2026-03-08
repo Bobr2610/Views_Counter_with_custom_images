@@ -1,0 +1,5 @@
+<svg width="200" height="50" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="50" rx="10" fill="#282c34" />
+  <text x="20" y="33" font-family="Arial" font-size="20" fill="#61dafb">@>A<>B@K:</text>
+  <text x="140" y="33" font-family="Arial" font-size="20" fill="#ffffff" id="count">{{COUNT}}</text>
+</svg>

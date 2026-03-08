@@ -43,7 +43,9 @@ jobs:
       - name: Increment or set count
         id: set
         run: |
-          if [ -n "${{ github.event.inputs.count }}" ]; then
+          if [ "${{ github.event_name }}" = "push" ]; then
+            new_count=${{ steps.read.outputs.count }}
+          elif [ -n "${{ github.event.inputs.count }}" ]; then
             new_count=${{ github.event.inputs.count }}
           else
             current=${{ steps.read.outputs.count }}

@@ -1,4 +1,4 @@
-[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=3)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=0)](https://github.com/Bobr2610/Beavers_counter)
 
 # Beavers Counter
 
@@ -22,7 +22,7 @@ Visitor counter based on GitHub Traffic API (views in last 14 days).
 
 3. **Add badge to README:**
    ```markdown
-   [![Views](https://raw.githubusercontent.com/OWNER/REPO/main/counter.png?v=3)](https://github.com/OWNER/REPO)
+   [![Views](https://raw.githubusercontent.com/OWNER/REPO/main/counter.png?v=0)](https://github.com/OWNER/REPO)
    ```
    Replace `OWNER/REPO` with the target repo. Use `?v=0` for cache-busting; workflow updates it automatically.
 
@@ -35,12 +35,12 @@ Visitor counter based on GitHub Traffic API (views in last 14 days).
 ## Setup (this repo)
 
 1. Add secret **`TRAFFIC_TOKEN`** — [Personal Access Token](https://github.com/settings/tokens) with `repo` scope.
-2. Workflow runs hourly and updates `counter.png?v=3` (beaver-themed digits).
+2. Workflow runs hourly and updates `counter.png?v=0` (beaver-themed digits).
 
 ## Use in README
 
 ```markdown
-[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=3)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=0)](https://github.com/Bobr2610/Beavers_counter)
 ```
 
 ---

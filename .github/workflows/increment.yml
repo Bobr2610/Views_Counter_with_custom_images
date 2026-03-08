@@ -1,0 +1,84 @@
+name: View Counter
+
+on:
+  repository_dispatch:
+    types: [page_view]
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'Set specific count (optional, leave empty to increment)'
+        required: false
+        type: string
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read current count
+        id: read
+        run: |
+          count=0
+          if [ -f counter.json ]; then
+            count=$(grep -o '"count": *[0-9]*' counter.json | grep -o '[0-9]*' || echo 0)
+          fi
+          if [ -z "$count" ] && [ -f counter.txt ]; then
+            count=$(cat counter.txt)
+          fi
+          count=${count:-0}
+          echo "count=$count" >> $GITHUB_OUTPUT
+
+      - name: Increment or set count
+        id: set
+        run: |
+          if [ -n "${{ github.event.inputs.count }}" ]; then
+            new_count=${{ github.event.inputs.count }}
+          else
+            current=${{ steps.read.outputs.count }}
+            new_count=$((current + 1))
+          fi
+          echo "new_count=$new_count" >> $GITHUB_OUTPUT
+          echo "$new_count" > counter.txt
+          echo "{\"count\": $new_count}" > counter.json
+          echo "Count: $new_count"
+
+      - name: Generate SVG badge
+        run: |
+          count=${{ steps.set.outputs.new_count }}
+          cat > views.svg << 'SVGEOF'
+          <svg xmlns="http://www.w3.org/2000/svg" width="88" height="20">
+            <linearGradient id="b" x2="0" y2="100%">
+              <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+              <stop offset="1" stop-opacity=".1"/>
+            </linearGradient>
+            <mask id="a">
+              <rect width="88" height="20" rx="3" fill="#fff"/>
+            </mask>
+            <g mask="url(#a)">
+              <path fill="#555" d="M0 0h53v20H0z"/>
+              <path fill="#007ec6" d="M53 0h35v20H53z"/>
+              <path fill="url(#b)" d="M0 0h88v20H0z"/>
+            </g>
+            <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,geneva,sans-serif" font-size="11">
+              <text x="27" y="15" fill="#010101" fill-opacity=".3">views</text>
+              <text x="27" y="14">views</text>
+              <text x="71" y="15" fill="#010101" fill-opacity=".3">COUNT</text>
+              <text x="71" y="14">COUNT</text>
+            </g>
+          </svg>
+          SVGEOF
+          sed -i "s/COUNT/$count/g" views.svg
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add counter.json counter.txt views.svg
+          git diff --staged --quiet || git commit -m "views: ${{ steps.set.outputs.new_count }}"
+          git push

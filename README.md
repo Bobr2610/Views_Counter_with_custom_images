@@ -1,48 +1,64 @@
-[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=3)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=0)](https://github.com/Bobr2610/Beavers_counter)
 
 # Beavers Counter
 
 Visitor counter based on GitHub Traffic API (views in last 14 days).
 
-## Quick Setup (another repository)
+---
 
-**Goal:** Add a view counter to any GitHub repo that shows traffic for that repo.
+## Как пользоваться (How to use)
 
-**Steps:**
+### 1. Скопируйте файлы в свой репозиторий
 
-1. **Copy these files into the target repo:**
-   - `.github/workflows/update-counter.yml` — GitHub Actions workflow
-   - `theme/` — digit images `0.png` through `9.png` (beaver-themed)
-   - `counter.json` — `{"count": 0}` (fallback when API returns 0)
+Склонируйте или скачайте и добавьте в свой репозиторий:
 
-2. **Add repository secret:**
-   - Repo → Settings → Secrets and variables → Actions
-   - New secret: `TRAFFIC_TOKEN`
-   - Value: [Personal Access Token](https://github.com/settings/tokens) with `repo` scope
+| Файл/папка | Описание |
+|------------|----------|
+| `.github/workflows/update-counter.yml` | GitHub Actions workflow |
+| `theme/` | Изображения цифр `0.png`–`9.png` (бобровая тема) |
+| `counter.json` | `{"count": 0}` — fallback при ошибке API |
 
-3. **Add badge to README:**
-   ```markdown
-   [![Views](https://raw.githubusercontent.com/OWNER/REPO/main/counter.png?v=3)](https://github.com/OWNER/REPO)
-   ```
-   Replace `OWNER/REPO` with the target repo. Use `?v=0` for cache-busting; workflow updates it automatically.
+### 2. Создайте Personal Access Token
 
-4. **Run:** Workflow runs hourly or on push. Manual run: Actions → Update Visitor Counter → Run workflow.
+1. Откройте [GitHub → Settings → Developer settings → Personal access tokens](https://github.com/settings/tokens)
+2. Создайте токен с правом **`repo`**
+3. Скопируйте токен (он показывается один раз)
 
-**Reference:** [Lec-Sem_SIS-Fund](https://github.com/Bobr2610/Lec-Sem_SIS-Fund) — example repo with this counter.
+### 3. Добавьте секрет в репозиторий
+
+1. Репозиторий → **Settings** → **Secrets and variables** → **Actions**
+2. **New repository secret**
+3. Имя: `TRAFFIC_TOKEN`
+4. Значение: вставьте токен из шага 2
+
+### 4. Добавьте бейдж в README
+
+Вставьте в README вашего репозитория (замените `OWNER` и `REPO` на свои):
+
+```markdown
+[![Views](https://raw.githubusercontent.com/OWNER/REPO/main/counter.png?v=0)](https://github.com/OWNER/REPO)
+```
+
+Параметр `?v=0` — начальное значение. **Важно:** workflow при каждом запуске автоматически обновляет ссылку на изображение (меняет `?v=` на timestamp), чтобы браузер и CDN не показывали закэшированную картинку. Не удаляйте и не фиксируйте `?v=` вручную — ссылка должна меняться.
+
+### 5. Запуск
+
+- **Автоматически:** workflow запускается каждый час и при push (кроме изменений `counter.png`, `theme/`, `README.md`)
+- **Вручную:** **Actions** → **Update Visitor Counter** → **Run workflow**
+
+---
+
+## Пример
+
+[Lec-Sem_SIS-Fund](https://github.com/Bobr2610/Lec-Sem_SIS-Fund) — репозиторий с подключённым счётчиком.
 
 ---
 
 ## Setup (this repo)
 
-1. Add secret **`TRAFFIC_TOKEN`** — [Personal Access Token](https://github.com/settings/tokens) with `repo` scope.
-2. Workflow runs hourly and updates `counter.png?v=3` (beaver-themed digits).
-
-## Use in README
-
-```markdown
-[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=3)](https://github.com/Bobr2610/Beavers_counter)
-```
+1. Добавьте секрет **`TRAFFIC_TOKEN`** — [Personal Access Token](https://github.com/settings/tokens) с правом `repo`
+2. Workflow обновляет `counter.png` и ссылку в README (параметр `?v=`) каждый час и при push — так изображение всегда актуальное
 
 ---
 
-*For per-repo counters with custom images, deploy the Worker from `worker/` and use `?id=your-repo-name`.*
+*Для счётчиков с кастомными изображениями используйте Worker из `worker/` с параметром `?id=your-repo-name`.*

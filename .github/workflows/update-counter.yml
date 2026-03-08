@@ -50,8 +50,12 @@ jobs:
           convert $files -resize 80x80 +append counter.png
 
       - name: Update README cache-bust
+        id: cachebust
         run: |
-          sed -i -E "s/counter\.png(\?v=[0-9]*)?/counter.png?v=${{ steps.count.outputs.views }}/g" README.md
+          TS=$(date +%s)
+          echo "ts=$TS" >> $GITHUB_OUTPUT
+          # Update badge link (only this repo's URL, not example templates)
+          sed -i -E "s|(raw\.githubusercontent\.com/${{ github.repository }}/main/counter\.png)(\?v=[0-9]+)?|\1?v=$TS|g" README.md
 
       - name: Commit and Push
         run: |

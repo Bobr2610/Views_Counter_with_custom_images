@@ -1,22 +1,26 @@
-[![Views](https://count.getloli.com/get/@Bobr2610-Beavers_counter?theme=moebooru)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png)](https://github.com/Bobr2610/Beavers_counter)
 
 # Beavers Counter
 
-View counter for GitHub READMEs. Uses [Moe-Counter](https://github.com/journey-ad/Moe-Counter) for **view tracking** — increments on each page load.
+View counter for GitHub READMEs with **custom beaver images** from `theme/`.
 
-## Usage (view tracking)
+## Option 1: Custom images + view tracking (recommended)
 
-Add to your README. Replace `YOUR_ID` with a unique identifier (e.g. `username-repo`):
+Deploy the Cloudflare Worker from `worker/` — increments on each page view, uses your images. See [worker/README.md](worker/README.md).
 
+After deploy, use your Worker URL:
+```markdown
+[![Views](https://beavers-counter.YOUR_ACCOUNT.workers.dev/)](https://github.com/Bobr2610/Beavers_counter)
+```
+
+## Option 2: Moe-Counter (view tracking, preset themes)
+
+Uses [Moe-Counter](https://github.com/journey-ad/Moe-Counter) — no deploy, but preset themes only:
 ```markdown
 [![Views](https://count.getloli.com/get/@YOUR_ID?theme=moebooru)](https://github.com/Bobr2610/Beavers_counter)
 ```
 
-**Themes:** `moebooru`, `asoul`, `rule34`, `gelbooru`, `3d-num`, `miku`, `minecraft`, and more. See [count.getloli.com](https://count.getloli.com).
-
-## Alternative: custom beaver images
-
-For the beaver digit images (no view tracking, manual/scheduled increment):
+## Option 3: Static badge (your images, no view tracking)
 
 ```markdown
 [![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png)](https://github.com/Bobr2610/Beavers_counter)

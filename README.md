@@ -7,7 +7,7 @@ Visitor counter based on GitHub Traffic API (views in last 14 days).
 ## Setup
 
 1. Add secret **`TRAFFIC_TOKEN`** — [Personal Access Token](https://github.com/settings/tokens) with `repo` scope.
-2. Workflow runs hourly and updates `counter.svg` and `counter.png`.
+2. Workflow runs hourly and updates `counter.png` (beaver-themed digits).
 
 ## Use in README
 

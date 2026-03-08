@@ -1,18 +1,29 @@
-[![Views](https://beavers-counter.YOUR_ACCOUNT.workers.dev/)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png)](https://github.com/Bobr2610/Beavers_counter)
 
 # Beavers Counter
 
-View counter with beaver images for GitHub README. Increments on each page view.
+A view counter badge for GitHub READMEs using custom beaver digit images.
 
-## Deployment
+## Usage
 
-1. Deploy the Cloudflare Worker from the `worker/` folder — [instructions](worker/README.md)
-2. Replace `YOUR_ACCOUNT` in the link above with your Cloudflare Workers subdomain (from `wrangler deploy` output)
-
-## Use in other repositories
-
-Add to your README (replace URL with your Worker):
+Add to your README (replace `Bobr2610` and `Beavers_counter` with your repo):
 
 ```markdown
-[![Views](https://YOUR-WORKER.workers.dev/)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png)](https://github.com/Bobr2610/Beavers_counter)
+```
+
+## Incrementing the counter
+
+- **Manual:** Actions → Update Counter → Run workflow
+- **Scheduled:** Runs daily at 12:00 UTC
+- **From another repo:** Trigger `repository_dispatch` with `event_type: page_view` (requires PAT with `repo` scope)
+
+## Structure
+
+```
+├── theme/           # Digit images (0.png–9.png)
+├── counter.json     # Count storage
+├── counter.png     # Generated badge
+└── .github/workflows/
+    └── counter.yml  # Update workflow
 ```

@@ -8,7 +8,7 @@ on:
       - 'counter.txt'
       - 'counter.png'
   schedule:
-    - cron: '0 12 * * *'
+    - cron: '*/5 * * * *'   # every 5 min (GitHub minimum)
   workflow_dispatch:
     inputs:
       count:

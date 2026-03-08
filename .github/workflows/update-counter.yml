@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - counter.svg
       - counter.png
   schedule:
     - cron: '0 * * * *'  # Запуск каждый час
@@ -41,8 +40,9 @@ jobs:
 
       - name: Commit and Push
         run: |
+          git checkout counter.svg
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add counter.svg counter.png
+          git add counter.png
           git diff --staged --quiet || git commit -m "Update visitor count: ${{ steps.traffic.outputs.views }}"
           git push

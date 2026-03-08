@@ -1,5 +1,30 @@
-<svg width="200" height="50" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="50" rx="10" fill="#282c34" />
-  <text x="20" y="33" font-family="Arial" font-size="20" fill="#61dafb">Views:</text>
-  <text x="140" y="33" font-family="Arial" font-size="20" fill="#ffffff" id="count">{{COUNT}}</text>
+<svg width="220" height="50" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d2c1a"/>
+      <stop offset="1" stop-color="#2a1f14"/>
+    </linearGradient>
+    <linearGradient id="beaver" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8b6914"/>
+      <stop offset="1" stop-color="#5c4510"/>
+    </linearGradient>
+    <linearGradient id="tail" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6b5344"/>
+      <stop offset="1" stop-color="#4a3529"/>
+    </linearGradient>
+  </defs>
+  <rect width="220" height="50" rx="10" fill="url(#bg)" stroke="#8b6914" stroke-width="1"/>
+  <!-- Beaver body -->
+  <ellipse cx="28" cy="28" rx="12" ry="14" fill="url(#beaver)"/>
+  <!-- Beaver tail -->
+  <ellipse cx="12" cy="28" rx="8" ry="6" fill="url(#tail)" transform="rotate(-15 12 28)"/>
+  <!-- Beaver ear -->
+  <ellipse cx="36" cy="18" rx="4" ry="5" fill="#5c4510"/>
+  <!-- Beaver eye -->
+  <circle cx="34" cy="26" r="2" fill="#1a1a1a"/>
+  <circle cx="35" cy="25" r="0.5" fill="#fff"/>
+  <!-- Beaver nose -->
+  <ellipse cx="42" cy="30" rx="3" ry="2" fill="#2a1f14"/>
+  <text x="55" y="33" font-family="Arial" font-size="18" fill="#c9a227">Views:</text>
+  <text x="175" y="33" font-family="Arial" font-size="20" font-weight="bold" fill="#e8d5a3" id="count">{{COUNT}}</text>
 </svg>

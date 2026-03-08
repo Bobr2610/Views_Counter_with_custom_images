@@ -29,13 +29,15 @@ jobs:
             RESPONSE=$(curl -sS -H "Authorization: token $TOKEN" \
               -H "Accept: application/vnd.github+json" \
               "https://api.github.com/repos/${{ github.repository }}/traffic/views" || echo '{}')
-            VIEWS=$(echo "$RESPONSE" | jq -r '.count // 0')
+            # Use API count only when response has valid "count" field (including 0)
+            # Fallback to counter.json only when API fails (no count in response)
+            if echo "$RESPONSE" | jq -e 'has("count")' > /dev/null 2>&1; then
+              VIEWS=$(echo "$RESPONSE" | jq -r '.count')
+            else
+              VIEWS=$(jq -r '.count // 0' counter.json 2>/dev/null || echo "0")
+            fi
           else
-            VIEWS=0
-          fi
-          # Fallback to counter.json if Traffic API returns 0
-          if [ "$VIEWS" = "0" ] && [ -f counter.json ]; then
-            VIEWS=$(jq -r '.count // 0' counter.json)
+            VIEWS=$(jq -r '.count // 0' counter.json 2>/dev/null || echo "0")
           fi
           echo "views=$VIEWS" >> $GITHUB_OUTPUT
 

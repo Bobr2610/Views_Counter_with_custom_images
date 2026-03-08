@@ -1,29 +1,25 @@
-[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://count.getloli.com/get/@Bobr2610-Beavers_counter?theme=moebooru)](https://github.com/Bobr2610/Beavers_counter)
 
 # Beavers Counter
 
-A view counter badge for GitHub READMEs using custom beaver digit images.
+View counter for GitHub READMEs. Uses [Moe-Counter](https://github.com/journey-ad/Moe-Counter) for **view tracking** — increments on each page load.
 
-## Usage
+## Usage (view tracking)
 
-Add to your README (replace `Bobr2610` and `Beavers_counter` with your repo):
+Add to your README. Replace `YOUR_ID` with a unique identifier (e.g. `username-repo`):
+
+```markdown
+[![Views](https://count.getloli.com/get/@YOUR_ID?theme=moebooru)](https://github.com/Bobr2610/Beavers_counter)
+```
+
+**Themes:** `moebooru`, `asoul`, `rule34`, `gelbooru`, `3d-num`, `miku`, `minecraft`, and more. See [count.getloli.com](https://count.getloli.com).
+
+## Alternative: custom beaver images
+
+For the beaver digit images (no view tracking, manual/scheduled increment):
 
 ```markdown
 [![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png)](https://github.com/Bobr2610/Beavers_counter)
 ```
 
-## Incrementing the counter
-
-- **Manual:** Actions → Update Counter → Run workflow
-- **Scheduled:** Runs daily at 12:00 UTC
-- **From another repo:** Trigger `repository_dispatch` with `event_type: page_view` (requires PAT with `repo` scope)
-
-## Structure
-
-```
-├── theme/           # Digit images (0.png–9.png)
-├── counter.json     # Count storage
-├── counter.png     # Generated badge
-└── .github/workflows/
-    └── counter.yml  # Update workflow
-```
+Increment: **Actions** → **Update Counter** → **Run workflow**, or daily at 12:00 UTC.

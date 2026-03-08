@@ -1,64 +1,64 @@
 [![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=1772972781)](https://github.com/Bobr2610/Beavers_counter)
 
-# Бобринный счетчик
+# Beaver Counter
 
-Считает посещения за последние 14 дней через API
+Counts visits over the last 14 days via API
 
 ---
 
-## Как пользоваться
+## How to Use
 
-### 1. Скопируйте файлы в свой репозиторий
+### 1. Copy files to your repository
 
-Склонируйте или скачайте и добавьте в свой репозиторий:
+Clone or download and add to your repository:
 
-| Файл/папка | Описание |
-|------------|----------|
+| File/folder | Description |
+|-------------|-------------|
 | `.github/workflows/update-counter.yml` | GitHub Actions workflow |
-| `theme/` | Изображения цифр `0.png`–`9.png` (бобровая тема) |
-| `counter.json` | `{"count": 0}` — fallback при ошибке API |
+| `theme/` | Digit images `0.png`–`9.png` (beaver theme) |
+| `counter.json` | `{"count": 0}` — fallback when API fails |
 
-### 2. Создайте Personal Access Token
+### 2. Create a Personal Access Token
 
-1. Откройте [GitHub → Settings → Developer settings → Personal access tokens](https://github.com/settings/tokens)
-2. Создайте токен с правом **`repo`**
-3. Скопируйте токен (он показывается один раз)
+1. Go to [GitHub → Settings → Developer settings → Personal access tokens](https://github.com/settings/tokens)
+2. Create a token with **`repo`** permission
+3. Copy the token (it is shown only once)
 
-### 3. Добавьте секрет в репозиторий
+### 3. Add the secret to your repository
 
-1. Репозиторий → **Settings** → **Secrets and variables** → **Actions**
+1. Repository → **Settings** → **Secrets and variables** → **Actions**
 2. **New repository secret**
-3. Имя: `TRAFFIC_TOKEN`
-4. Значение: вставьте токен из шага 2
+3. Name: `TRAFFIC_TOKEN`
+4. Value: paste the token from step 2
 
-### 4. Добавьте бейдж в README
+### 4. Add the badge to README
 
-Вставьте в README вашего репозитория (замените `OWNER` и `REPO` на свои):
+Insert into your repository's README (replace `OWNER` and `REPO` with yours):
 
 ```markdown
 [![Views](https://raw.githubusercontent.com/OWNER/REPO/main/counter.png?v=0)](https://github.com/OWNER/REPO)
 ```
 
-Параметр `?v=0` — начальное значение. **Важно:** workflow при каждом запуске автоматически обновляет ссылку на изображение (меняет `?v=` на timestamp), чтобы браузер и CDN не показывали закэшированную картинку. Не удаляйте и не фиксируйте `?v=` вручную — ссылка должна меняться.
+The `?v=0` parameter is the initial value. **Important:** the workflow automatically updates the image link on each run (changes `?v=` to a timestamp) so the browser and CDN don't show a cached image. Do not remove or hardcode `?v=` manually — the link must change.
 
-### 5. Запуск
+### 5. Running
 
-- **Автоматически:** workflow запускается каждый час и при push (кроме изменений `counter.png`, `theme/`, `README.md`)
-- **Вручную:** **Actions** → **Update Visitor Counter** → **Run workflow**
-
----
-
-## Пример
-
-[Lec-Sem_SIS-Fund](https://github.com/Bobr2610/Lec-Sem_SIS-Fund) — репозиторий с подключённым счётчиком.
+- **Automatically:** the workflow runs every hour and on push (except for changes to `counter.png`, `theme/`, `README.md`)
+- **Manually:** **Actions** → **Update Visitor Counter** → **Run workflow**
 
 ---
 
-## Настройка
+## Example
 
-1. Добавьте секрет **`TRAFFIC_TOKEN`** — [Personal Access Token](https://github.com/settings/tokens) с правом `repo`
-2. Workflow обновляет `counter.png` и ссылку в README (параметр `?v=`) каждый час и при push — так изображение всегда актуальное
+[Lec-Sem_SIS-Fund](https://github.com/Bobr2610/Lec-Sem_SIS-Fund) — repository with the counter connected.
 
 ---
 
-*Для счётчиков с кастомными изображениями используйте Worker из `worker/` с параметром `?id=your-repo-name`.*
+## Configuration
+
+1. Add the **`TRAFFIC_TOKEN`** secret — [Personal Access Token](https://github.com/settings/tokens) with `repo` permission
+2. The workflow updates `counter.png` and the link in README (the `?v=` parameter) every hour and on push — so the image is always up to date
+
+---
+
+*For counters with custom images, use the Worker from `worker/` with the `?id=your-repo-name` parameter.*

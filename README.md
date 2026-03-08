@@ -1,4 +1,4 @@
-[![Views](https://raw.githubusercontent.com/Bobr2610/Beavers_counter/main/counter.png?v=1772972781)](https://github.com/Bobr2610/Beavers_counter)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Views_Counter_with_custom_images/main/counter.png?v=1772986005)](https://github.com/Bobr2610/Views_Counter_with_custom_images)
 
 # Views Counter with custom images
 
@@ -36,7 +36,7 @@ Clone or download and add to your repository:
 Insert this line into your README (or keep the one that comes with the repo):
 
 ```markdown
-[![Views](https://raw.githubusercontent.com/OWNER/REPO/main/counter.png?v=0)](https://github.com/OWNER/REPO)
+[![Views](https://raw.githubusercontent.com/Bobr2610/Views_Counter_with_custom_images/main/counter.png?v=1772986005)](https://github.com/Bobr2610/Views_Counter_with_custom_images)
 ```
 
 **Autonomous:** On the first run, the workflow automatically replaces `OWNER/REPO` and the branch with your repository — no manual editing needed. It also updates `?v=` to a timestamp on each run to avoid cache.
